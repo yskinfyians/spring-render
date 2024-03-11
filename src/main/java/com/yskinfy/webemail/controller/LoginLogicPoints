@@ -1,0 +1,13 @@
+APIS::-> 
+1.http://localhost:8080/login/signup
+
+2.http://localhost:8080/login/newLogin --> All Login requests to be redirected through this EndPoint..
+
+		1.Check if Username Exists
+			->If Exists Check if there are more than 3 failed logins
+				->If Yes return account Locked for 3 or more continous failed logins..
+				->if No then Check if Password is alright.
+					->if yes Generate token return Success and set failed login=0
+					->if no increase failed login count and return failure
+				 
+				
