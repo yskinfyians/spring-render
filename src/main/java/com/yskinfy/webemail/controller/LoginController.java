@@ -75,7 +75,7 @@ public class LoginController {
 			
 			String password=convertBase64ToNormal(request.getEncodedPassword());
 			logger.debug(password);
-			if(BCrypt.checkpw(password, request.getBcryptPassword()))
+			if(BCrypt.checkpw(password, user.get(0).getPassword()))
 			{
 				logger.info("Passwords Matched!!");
 				zenovelLoginRepo.unsuccessfulLogins("0",request.getUsername());
@@ -111,6 +111,7 @@ public class LoginController {
 				if(unsuccessfulCount>=LOGIN_THRESHOLD)
 				{
 					logger.info("Count excessive than threshold.."+unsuccessfulCount);
+					
 					response.put("statusCode", "500");
 					response.put("statusDescs", "FAILURE");
 					response.put("description", "Account Locked!!");
